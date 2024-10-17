@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Spacer, Text } from '@chakra-ui/react'
 import FilterForm from '../../../features/Filter/FilterForm'
 import CardsList from '../../../shared/ui/CardsList'
 import { useSelector } from 'react-redux'
@@ -17,15 +17,14 @@ const Catalog: React.FC = () => {
   const { data: articles, isFetching, isError } = useGetArticlesQuery(normalizedParams)
 
   return (
-    <Flex
-      flexDirection={'column'}
-      alignItems={'center'}
-      justifyContent={'space-between'}
-      h={'100%'}
-    >
+    <Flex flexDirection={'column'} alignItems={'center'} h={'100%'}>
       <FilterForm />
 
-      {isFetching && <Text>Загрузка товара...</Text>}
+      {isFetching && (
+        <Box>
+          <Text>Загрузка товара...</Text>
+        </Box>
+      )}
 
       {isError && (
         <Box>
@@ -35,13 +34,13 @@ const Catalog: React.FC = () => {
 
       {!isFetching && !isError && articles?.data.length === 0 && <Text>Товары не найдены.</Text>}
 
-      {!isFetching && !isError && articles && articles.data.length > 0 && (
-        <>
+      <Flex flexDirection={'column'} h={'100%'} justifyContent={'space-between'}>
+        {!isFetching && !isError && articles && articles.data.length > 0 && (
           <CardsList cardsData={articles.data} />
-
-          <PaginationButtons page={filters.page} total_pages={articles.total_pages} />
-        </>
-      )}
+        )}
+        <Spacer />
+        {articles && <PaginationButtons page={filters.page} total_pages={articles.total_pages} />}
+      </Flex>
     </Flex>
   )
 }
