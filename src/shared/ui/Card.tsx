@@ -5,7 +5,7 @@ const Card: React.FC<CardProps> = ({ name, article, fullName, price, brand, manu
   return (
     <Flex
       flexDirection={'column'}
-      border={'1px solid black'}
+      border={'1px solid grey'}
       borderRadius={'15px'}
       padding={'15px'}
       gap={15}
