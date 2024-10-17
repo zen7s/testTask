@@ -1,13 +1,18 @@
 {
   "name": "testtask",
   "private": true,
+  "author": "zen7sn",
+  "description": "123",
+  "homepage": "https://zen7s.github.io/testTask/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.10.2",
@@ -15,6 +20,7 @@
     "@emotion/styled": "^11.13.0",
     "@reduxjs/toolkit": "^2.3.0",
     "framer-motion": "^11.11.9",
+    "gh-pages": "^6.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
